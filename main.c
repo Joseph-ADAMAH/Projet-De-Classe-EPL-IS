@@ -5,16 +5,16 @@
                                                                                                        *
  * Encadrant : Dr AKAKPO                                                                               *
                                                                                                        *
- * Date de création : Lundi le 12 Mai 2025                                                             *
+ * Date de crÃ©ation : Lundi le 12 Mai 2025                                                             *
                                                                                                        *
  *                                                                                                     *
  *                                                                                                     *                                                                                                     *
- * Fonctionnalités :                                                                                   *
+ * FonctionnalitÃ©s :                                                                                   *
  *   - Saisie du nombre du nombres des points et tous ces informations                                 *
  *   - Calcul automatique de la distance entre deux points
      -Calcul automatique du Barycentre entre deux points                                               *
-     -Les autres fonctionnalités se retrouve au menu                                                   *
- *   - Possibilité de recalcul sans quitter le programme                                               *
+     -Les autres fonctionnalitÃ©s se retrouve au menu                                                   *
+ *   - PossibilitÃ© de recalcul sans quitter le programme                                               *
  *                                                                                                     *
  *                                                                                                     *
  ********************************************************************************************************/
@@ -28,7 +28,8 @@
 
 
 /*
-NB: Dans notre code il existe des scanf("%*c") ce qui est du au fais que fgets prend des \n et ignore ce qu'il doit prendre
+NB: Dans notre code il existe des while (getchar() != '\n'); ce qui est du au fais que fgets prend des \n enregistrÃ©dans stdin
+et ignore ce qu'il doit prendre en suite 
 */
 
 typedef struct Point pt;
@@ -41,7 +42,7 @@ struct Point
 };
 
 
-int GenereCoefficient(pt *infoPoint, int nbPoint, pt *p) //Fonction qui génere les coefficients
+int GenereCoefficient(pt *infoPoint, int nbPoint, pt *p) //Fonction qui gÃ©nere les coefficients
 {
     p->coef = ceil(fmax(fabs(p->abs), fabs(p->ord)) / floor(fmin(fabs(p->abs), fabs(p->ord))));
 
@@ -53,7 +54,7 @@ void saisiInfo(pt *infopoint, int nbPoint) //
 {
 
     pt *p;
-    float controle; // sera utiliser pour controler l'entrée des abscisses et des oordonnées
+    float controle; // sera utiliser pour controler l'entrÃ©e des abscisses et des oordonnÃ©es
 
     for (p = infopoint; p< infopoint + nbPoint; p++ )
     {
@@ -81,7 +82,7 @@ void saisiInfo(pt *infopoint, int nbPoint) //
 
         do
         {
-            printf("\nEntrez l'ordonnée du point %d : ", (int)(p-infopoint+1));
+            printf("\nEntrez l'ordonnÃ©e du point %d : ", (int)(p-infopoint+1));
 
             while (getchar() != '\n');
 
@@ -107,7 +108,7 @@ void AfficherInfoPoint(pt *infopoint, int nbPoint)
 {
     pt *p;
 
-    printf("\nNOM----------Cordonnées----------Coefficient\n");
+    printf("\nNOM----------CordonnÃ©es----------Coefficient\n");
 
     for (p = infopoint; p< infopoint + nbPoint; p++ )
     {
@@ -143,7 +144,7 @@ float Maxabs(pt *infoPoint, int nbPoint) // Fonction qui recherche et retourne l
 
 }
 
-float Maxord(pt *infoPoint, int nbPoint) // Fonction qui recherche et retourne le Maximum des ordonées
+float Maxord(pt *infoPoint, int nbPoint) // Fonction qui recherche et retourne le Maximum des ordonÃ©es
 {
     float max;
 
@@ -159,7 +160,7 @@ float Maxord(pt *infoPoint, int nbPoint) // Fonction qui recherche et retourne l
         }
     }
 
-    printf("\nLe maximum des ordonnée est : %.2f\n",max);
+    printf("\nLe maximum des ordonnÃ©e est : %.2f\n",max);
 
     return max;
 }
@@ -185,7 +186,7 @@ float MinAbs(pt *infoPoint, int nbPoint) // Fonction qui recherche et retourne l
     return min;
 }
 
-float MinOrd(pt *infoPoint, int nbPoint) // Fonction qui recherche et retourne le Minimum des ordonnées
+float MinOrd(pt *infoPoint, int nbPoint) // Fonction qui recherche et retourne le Minimum des ordonnÃ©es
 {
     float min;
 
@@ -201,7 +202,7 @@ float MinOrd(pt *infoPoint, int nbPoint) // Fonction qui recherche et retourne l
         }
     }
 
-    printf("\nLe minimum des ordonnée est : %.2f\n",min);
+    printf("\nLe minimum des ordonnÃ©e est : %.2f\n",min);
 
     return min;
 }
@@ -215,13 +216,13 @@ pt *RecherchePt(pt *infoPoint, int nbPoint, char *nom, pt **pointp   )
 {
 
     pt *n = NULL,*p;
-    // printf("\nVeuillez entrer le nom du point recherché");
+    // printf("\nVeuillez entrer le nom du point recherchÃ©");
     //scanf("%*c");
     //fgets(nom, sizeof(nom), stdin);
     for (p = infoPoint; p< infoPoint + nbPoint; p++ )
     {
 
-        if(strcmp(nom, p->nom) == 0 ) // La fonction strcmp permet de comparer les chaine de caractère
+        if(strcmp(nom, p->nom) == 0 ) // La fonction strcmp permet de comparer les chaine de caractÃ¨re
         {
             printf("Le point %s (%.2f, %.2f)", p->nom, p->abs, p->ord);
 
@@ -235,7 +236,7 @@ pt *RecherchePt(pt *infoPoint, int nbPoint, char *nom, pt **pointp   )
     }
     if ( n == NULL)
     {
-        printf("\nDésolé mais ce point n'existe pas dans la liste des points ");
+        printf("\nDÃ©solÃ© mais ce point n'existe pas dans la liste des points ");
     }
 
 
@@ -260,7 +261,7 @@ pt *RechercherPointeur(pt *infoPoint, int nbPoint, char *nom)
         {
             printf("C'est le point %s (%.2f, %.2f)", p->nom, p->abs, p->ord);
 
-            n=p; // Passage de l'adresse du point à n qui va le retourner
+            n=p; // Passage de l'adresse du point Ã  n qui va le retourner
 
             printf("\nEt son pointeurs est %p : \n", n);
             break;
@@ -269,7 +270,7 @@ pt *RechercherPointeur(pt *infoPoint, int nbPoint, char *nom)
     }
     if ( n == NULL)
     {
-        printf("\n\nDésolé mais ce point n'existe pas dans la liste des points ");
+        printf("\n\nDÃ©solÃ© mais ce point n'existe pas dans la liste des points ");
     }
 
     return n;
@@ -281,7 +282,7 @@ void Barycentre(pt *infoPoint, int nbPoint) // Fonction qui calcule le barycentr
 {
     char x[3]  ;// Variable pour prendre le nom des point pour calculer le barycentre
     char y[3] ; // Pareil ici
-    float xG, yG; // cordonnéés du barycentre
+    float xG, yG; // cordonnÃ©Ã©s du barycentre
     pt *PtxG = NULL;
     pt *ptyG = NULL;
 
@@ -297,7 +298,7 @@ void Barycentre(pt *infoPoint, int nbPoint) // Fonction qui calcule le barycentr
     if( PtxG != NULL ) // Si le premier point n'existe pas alors on ne demande plus le deuxieme
     {
 
-        printf("\nVeuillez entrer le nom du deuxiéme point : ");
+        printf("\nVeuillez entrer le nom du deuxiÃ©me point : ");
 
         while (getchar() != '\n');
 
@@ -321,7 +322,7 @@ void Barycentre(pt *infoPoint, int nbPoint) // Fonction qui calcule le barycentr
 float CalculDistance(pt *infoPoint, int nbPoint)
 {
     char x[3] ; // Pour demander le nom des points
-    pt *Ptx, *pty; // Pour prendre les pointeurs des coordonnées des point si ils existent
+    pt *Ptx, *pty; // Pour prendre les pointeurs des coordonnÃ©es des point si ils existent
     float distance;
 
     printf("\nVeuillez entrer le nom du premier point : \n");
@@ -334,7 +335,7 @@ float CalculDistance(pt *infoPoint, int nbPoint)
 
     if(Ptx != NULL) // Si le premier point n'existe pas alors on ne demande plus le deuxieme
     {
-        printf("\nVeuillez entrer le nom du deuxiéme point : ");
+        printf("\nVeuillez entrer le nom du deuxiÃ©me point : ");
 
         while (getchar() != '\n');
 
@@ -357,7 +358,7 @@ float CalculDistance(pt *infoPoint, int nbPoint)
 
 void Menu(int *choix)
 {
-    // printf("\n1 Réservation de mémoire");
+    // printf("\n1 RÃ©servation de mÃ©moire");
     printf("\n1 Saisi des infots d'un point");
     printf("\n\n");
 
@@ -373,13 +374,13 @@ void Menu(int *choix)
     printf("\n5 Minimum des abscisses ");
     printf("\n\n");
 
-    printf("\n6 Minimum des ordonnées");
+    printf("\n6 Minimum des ordonnÃ©es");
     printf("\n\n");
 
     printf("\n7 Maximum des abscisses ");
     printf("\n\n");
 
-    printf("\n8 Maximum des ordonnées ");
+    printf("\n8 Maximum des ordonnÃ©es ");
     printf("\n\n");
 
     printf("\n9 Recherche d'un point et retour de son pointeur");
